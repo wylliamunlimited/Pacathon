@@ -10,7 +10,8 @@ uniform int u_numColors;
 
 void main() {
     vec4 texColor = texture2D(u_texture, v_texCoords);
-    int colorIndex = int(texColor.r * float(u_numColors));
-    colorIndex = clamp(colorIndex, 0, u_numColors - 1);
+    float colorIndexFloat = texColor.r * float(u_numColors);
+    colorIndexFloat = clamp(colorIndexFloat, 0.0, float(u_numColors - 1));
+    int colorIndex = int(colorIndexFloat);
     gl_FragColor = u_colors[colorIndex];
 }
