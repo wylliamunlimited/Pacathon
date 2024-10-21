@@ -1,0 +1,14 @@
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+eclipse.project.name = appName + '-core'
+
+dependencies {
+  api "com.badlogicgames.gdx:gdx:$gdxVersion"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+  implementation "org.joml:joml:1.10.5"
+  implementation "com.fasterxml.jackson.core:jackson-databind:2.17.2"
+  implementation "com.cjcrafter:neat4j:0.2.4-SNAPSHOT"
+
+  if(enableGraalNative == 'true') {
+    implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
+  }
+}

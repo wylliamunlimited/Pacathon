@@ -1,0 +1,17 @@
+{
+  "pacman_spawn_position": {"x": 111, "y": 75},
+  "ghost_revive_position": {"x": 111, "y": 147},
+  "pass_intersections": [
+
+  ],
+  "fruit_spawn_position": {"x": 111, "y": 123},
+  "ghosts": [
+    {
+      "name": "ghosts/pinky.json",
+      "spawn_position": {"x": 111, "y": 147},
+      "spawn_direction": "down",
+      "is_released": false,
+      "scatter_tile": {"x": 2, "y": 35}
+    }
+  ]
+}
