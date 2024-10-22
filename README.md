@@ -2,6 +2,12 @@
 
 Welcome to the Fall 2024 Pacathon! We have already setup Pacman and some basic Neural Network stuff for you to get started. Your task is to build the best Pacman player. You can use any algorithm you want, but we recommend sticking to Neural Networks through Neat4j (the library we have been building out during AI Society meetings).
 
+To help anybody feeling lost, we also have some video tutorials:
+1. Getting Started: https://www.youtube.com/watch?v=L6oWLffBQmA
+2. How to start training: https://www.youtube.com/watch?v=QRUsuvQZHrE
+3. Saving your training: https://www.youtube.com/watch?v=2mkhrvVbZsI
+4. Submitting your final code: https://www.youtube.com/watch?v=mvRI4aAv8d8
+
 ## Pacman
 For you today, we have a *nearly perfect* implementation of Pacman with a few key differences:
 1. Randomness is not seeded, so patterns do not work
