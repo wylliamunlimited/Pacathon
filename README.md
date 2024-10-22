@@ -2,8 +2,46 @@
 
 Welcome to the Fall 2024 Pacathon! We have already setup Pacman and some basic Neural Network stuff for you to get started. Your task is to build the best Pacman player. You can use any algorithm you want, but we recommend sticking to Neural Networks through Neat4j (the library we have been building out during AI Society meetings).
 
-Here is your "general workflow" for this tournament:
-1. Clone this repository.
+## Pacman
+For you today, we have a *nearly perfect* implementation of Pacman with a few key differences:
+1. Randomness is not seeded, so patterns do not work
+2. After level 255, you can keep going
+
+If you have never seen Pacman before, you can see some gameplay [here](https://www.youtube.com/watch?v=i_OjztdQ8iw),
+and learn about the internals of the game [here](https://pacman.holenet.info/) (we followed this guide very closely
+as we implemented Pacman).
+
+## Teams
+You may work solo, or in teams of 2 **or more**. Note that we will only be able to distribute **up to** 2 prizes per team. Thus,
+we recommend having teams of 2 for this tournament. 
+
+## Tournament
+During the tournament, all submitted neural networks will go through the same gauntlet (The gauntlet, in this tournament, is actually
+*much easier* than the base game). In general, here are the levels your pacman goes through:
+* `Level 1`: No ghosts
+* `Level 2`: Only clyde
+* `Level 3`: Only Blinky
+* `Level 4`: Only Pinky
+* `Level 5`: Blinky + Clyde
+* `Level 6`: Blinky + Pinky
+* `Level 7`: Blinky + Inky + Clyde
+* `Level 8`: Blinky + Pinky + Clyde
+* `Level 9`: Blinky + Pinky + Inky
+* `Level 10+`: All 4 ghosts
+    * As levels progress, ghosts get faster
+    * As levels progress, ghosts scatter less often
+    * As levels progress, ghosts are frightened for less time
+
+Your Pacman will lose 1 life if they do not collect any score within any 40 second interval ($60 \cdot 40$ frames). 
+
+Pacman is a surprisingly difficult game, so getting to level 10 after <1 day
+of training is **seriously impressive**. That being said, *if* any models
+get that far, the levels will go on infinitely as needed. 
+
+## Workflow
+Although you have access to every file for running NEAT, Pacman, and graphics, you really only need to worry about these: 
+
+1. Make a fork of this repository, and clone your fork locally.
 2. Navigate to the `NeatPacmanBehavior` class in `./core/src/main/java/com/buaisociety/pacathon/entity/behavior/NeatPacmanBehavior.java`.
     * This will be where you choose the inputs and rewards for your neural network.
     * *This file is just used for testing*, so feel free to "break" the game here (e.g. randomly kill of pacman early).
@@ -16,17 +54,15 @@ Here is your "general workflow" for this tournament:
     * You can also load a pretrained `Neat` object from your previous runs.
 5. Train your network!
 
-Once you have a network ready to submit, 
-
+Once you have a network ready to submit, you should [submit a pull request](https://github.com/buaiml/Pacathon/compare). Once you submit 
+a PR, you are all done!
 
 
 ## Setup
 You should be running Java 21 or higher. You can check your java version by running `java -version` in your terminal. If it prints something like `openjdk version "21.0.5"`, than you are good to go (The 21 is the important part). If not, you can download java 21 from amazon corretto for [mac](https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/macos-install.html), [windows](https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/windows-install.html), or [linux](https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/generic-linux-install.html). You'll need to make sure that your PATH is set
 up correctly, so that when you run `java -version` it prints the correct version.
 
-> If you are using IntelliJ, you can follow [their tutorial](https://www.jetbrains.com/guide/java/tips/download-jdk/) to download Java. 
-
-> If you are having any troubles, you can copy-paste these instructions into ChatGPT and ask for help with uninstalling old versions and installing Java 21 on your OS. 
+> > If you are having any troubles, you can copy-paste these instructions into ChatGPT and ask for help with uninstalling old versions and installing Java 21 on your OS. 
 
 ## Modules
 
@@ -48,4 +84,14 @@ For example, you can run the application on desktop with the following command:
 ./gradlew lwjgl3:run
 ```
 
-> Note: If you are using Windows, you should use Git Bash, WSL, or another terminal of your choice to run the provided commands. Otherwise, you can use the Command Prompt, but you should replace `./gradlew` with `gradlew.bat`.
+> > Note: If you are using Windows, you should use Git Bash, WSL, or another terminal of your choice to run the provided commands. Otherwise, you can use the Command Prompt, but you should replace `./gradlew` with `gradlew.bat`.
+
+## Tips
+Chances are, none of you have ever done this before. You will have to try
+new things in order to succeed. Break the problem down into components, and
+ask yourself; "what information do ***I*** need to play Pacman?"
+
+Also consider that you may use any graph or algorithm to feed into the neural
+network. 
+
+You are also free to do research!
