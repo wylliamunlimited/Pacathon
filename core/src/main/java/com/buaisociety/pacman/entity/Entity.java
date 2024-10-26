@@ -52,6 +52,10 @@ public abstract class Entity implements Disposable {
         return new Vector2d(position);
     }
 
+    public @NotNull Vector2d getLastPosition() {
+        return new Vector2d(lastPosition);
+    }
+
     public void setPosition(@NotNull Vector2dc position) {
         ((Vector2d) this.lastPosition).set(this.position);
         ((Vector2d) this.position).set(position);

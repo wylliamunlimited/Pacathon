@@ -3,6 +3,8 @@ package com.buaisociety.pacman.entity.behavior;
 import com.buaisociety.pacman.entity.Direction;
 import com.buaisociety.pacman.entity.Entity;
 import com.buaisociety.pacman.entity.PacmanEntity;
+import com.buaisociety.pacman.maze.Maze;
+import com.buaisociety.pacman.maze.Tile;
 import com.cjcrafter.neat.compute.Calculator;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -49,8 +51,39 @@ public class TournamentBehavior implements Behavior {
 
         // TODO: Put all your code for info into the neural network here
 
+        Direction forward = pacman.getDirection();
+        Direction left = pacman.getDirection().left();
+        Direction right = pacman.getDirection().right();
+
+        Direction behind = pacman.getDirection().behind();
+
+        // Input nodes 1, 2, 3, and 4 show if the pacman can move in the forward, left, right, and behind directions
+        boolean canMoveForward = pacman.canMove(forward);
+        boolean canMoveLeft = pacman.canMove(left);
+        boolean canMoveRight = pacman.canMove(right);
+        boolean canMoveBehind = pacman.canMove(behind);
+
+        Maze maze = pacman.getMaze();
+        Tile[][] tiles = maze.getTiles();
+        double closestPelletDistance = Double.MAX_VALUE;
+        // Get closest pellet distance
+        for (Tile[] row : tiles) {
+            for (Tile tile : row) {
+                double dx = tile.getPosition().x() - pacman.getPosition().x;
+                double dy = tile.getPosition().y() - pacman.getPosition().y;
+                if (closestPelletDistance > Math.sqrt(dx * dx + dy * dy)) {
+                    closestPelletDistance = Math.sqrt(dx * dx + dy * dy);
+                }
+            }
+        }
+
         float[] inputs = new float[] {
             // TODO: Add your inputs here
+            canMoveForward ? 1f : 0f,
+            canMoveLeft ? 1f : 0f,
+            canMoveRight ? 1f : 0f,
+            canMoveBehind ? 1f : 0f,
+            (float) closestPelletDistance
         };
         float[] outputs = calculator.calculate(inputs).join();
 

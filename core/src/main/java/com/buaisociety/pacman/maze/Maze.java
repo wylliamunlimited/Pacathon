@@ -119,6 +119,10 @@ public class Maze implements Disposable {
         gameStartTicks = 60 * 4;
     }
 
+    public Tile[][] getTiles() {
+        return tiles;
+    }
+
     /**
      * Responsible for initializing the tiles array, and setting the initial variables of this Maze instance.
      */
